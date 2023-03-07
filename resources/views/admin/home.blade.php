@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('projects.index') }}" class="btn btn-small btn-secondary mb-3">VIEW MY PROJECTS</a>
+        @Auth
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-small btn-secondary mb-3">{{ __('Projects') }}</a>
+        @endauth
         <h2 class="fs-4 text-secondary my-4">
             {{ __('Dashboard') }}
         </h2>
