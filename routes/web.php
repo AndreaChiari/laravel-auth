@@ -22,6 +22,8 @@ Route::get('/', [GuestHomeController::class, 'index']);
 //rotte protette
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+
+    Route::resource('projects', ProjectController::class);
 });
 
 

@@ -1,6 +1,9 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
+use App\Models\Project;
 
 use Illuminate\Http\Request;
 
@@ -11,6 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $projects = Project::orderBy('updated_at', 'DESC')->get();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -34,7 +39,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
