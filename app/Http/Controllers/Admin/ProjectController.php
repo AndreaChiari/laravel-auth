@@ -64,6 +64,8 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Project::destroy($id);
+
+        return to_route('admin.projects.index')->with('delete', 'tool eliminato con successo');
     }
 }
