@@ -34,6 +34,7 @@
                             <a class="btn btn-success ms-3 button-create" href="{{ route('admin.projects.create') }}">Add
                                 new
                                 project</a>
+                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning ms-3">Edit</a>
                         </td>
                     </tr>
                 @endforeach
