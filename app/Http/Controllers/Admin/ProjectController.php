@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -36,6 +37,11 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $project = new Project();
+        if (array_key_exists('image', $data)) {
+            $image_url = Storage::put('projects', $data['image']);
+            $data['image'] = $image_url;
+        }
+
         $project->fill($data);
         $project->save();
 
@@ -65,6 +71,12 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $request->all();
+        if (array_key_exists('image', $data)) {
+            if ($project->image) Storage::delete($project->image);
+            $image_url = Storage::put('projects', $data['image']);
+            $data['image'] = $image_url;
+        }
+
         $project->update($data);
         return to_route('admin.projects.show', $project->id);
     }

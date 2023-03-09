@@ -1,8 +1,9 @@
 @if ($project->exists)
-    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" novalidate>
+    <form action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" method="POST"
+        novalidate>
         @method('PUT')
     @else
-        <form action="{{ route('admin.projects.store') }}" method="POST" novalidate>
+        <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST" novalidate>
 @endif
 @csrf
 <div class="row cols-3">
@@ -41,6 +42,16 @@
             <label for="github" class="form-label">github</label>
             <input type="url" class="form-control"id="github" name="github"
                 value="{{ old('github', $project->github) }}" placeholder="github">
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1">
+    <div class="col">
+        {{-- created_at project --}}
+        <div class="mb-3">
+            <label for="image" class="form-label">image</label>
+            <input type="file" id="image" name="image" class="form-control">
         </div>
     </div>
 </div>
